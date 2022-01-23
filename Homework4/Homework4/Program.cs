@@ -20,18 +20,12 @@ namespace Homework4
                 userString = Console.ReadLine();
             }
 
-            var randomizer = new Random();
-
-            var arrayWithRandomNumbers = new int[n];
-
-            for (int i = 0; i < n; i++)
-            {
-                arrayWithRandomNumbers[i] = randomizer.Next(1, 27);
-            }
+            var arrayWithRandomNumbers = GenerateIntArray(1, 27, n);
 
             int countOfOddNumbers = CountOfOddNumbersInArray(arrayWithRandomNumbers);
 
             var upperSymbols = new char[] { 'A', 'E', 'I', 'D', 'H', 'J' };
+
             var oddArr = new string[countOfOddNumbers];
             var evenArr = new string[n - countOfOddNumbers];
 
@@ -90,6 +84,22 @@ namespace Homework4
             }
 
             return countOfOddNumbers;
+        }
+
+        private static int[] GenerateIntArray(int minValue, int maxValue, int arrayLength)
+        {
+            var randomizer = new Random();
+
+            var arrayWithRandomNumbers = new int[arrayLength];
+
+            for (int i = 0; i < arrayLength; i++)
+            {
+                arrayWithRandomNumbers[i] = randomizer.Next(minValue, maxValue);
+            }
+
+            int countOfOddNumbers = CountOfOddNumbersInArray(arrayWithRandomNumbers);
+
+            return arrayWithRandomNumbers;
         }
     }
 }
